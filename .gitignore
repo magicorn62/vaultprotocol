@@ -1,0 +1,32 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+.env
+.vercel
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
+src/App.tsx(211,19): error TS6133: '_receipt' is declared but its value is never read.
+src/App.tsx(285,31): error TS6133: '_addResult' is declared but its value is never read.
+src/App.tsx(306,31): error TS6133: '_switchResult' is declared but its value is never read.
+Error: Command "npm run build" exited with 2

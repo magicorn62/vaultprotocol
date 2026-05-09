@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+/* Ensure the body and root don't have default centering */
+:root {
+  background-color: #0a0a0c; /* Matches your app's dark theme */
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  display: block; /* Removes default Vite flex centering */
+  min-height: 100vh;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+#root {
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #2d3748; /* Example dark theme color */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #718096;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0;
+}
+/* Transitions */
+button, a {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 768px) {
+  #root {
+    padding: 0 1rem;
+  }
+}
