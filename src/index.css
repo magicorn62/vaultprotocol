@@ -1,56 +1,163 @@
 @import "tailwindcss";
 
-/* Ensure the body and root don't have default centering */
+/* Mobile-first base styles */
 :root {
-  background-color: #0a0a0c; /* Matches your app's dark theme */
+  background-color: #0a0a0c;
   color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 body {
   margin: 0;
-  display: block; /* Removes default Vite flex centering */
+  display: block;
   min-height: 100vh;
+  min-height: 100dvh; /* Support for dynamic viewport height */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
 .animate-spin {
   animation: spin 1s linear infinite;
 }
 
 #root {
   width: 100%;
+  display: flex;
+  min-height: 100dvh;
 }
 
+/* Scrollbar styling */
 ::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #2d3748; /* Example dark theme color */
+  background: #2d3748;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #718096;
-    border-radius: 4px;
+  background: #718096;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #a0aec0;
+  background: #a0aec0;
 }
-/* Transitions */
-button, a {
+
+/* Smooth transitions */
+button, a, input, textarea {
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media (max-width: 768px) {
+/* Input fields optimization for mobile */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="file"],
+textarea {
+  font-size: 16px; /* Prevents zoom on iOS focus */
+  min-height: 44px; /* Touch target minimum size */
+}
+
+/* File input styling */
+input[type="file"] {
+  cursor: pointer;
+}
+
+/* Focus states for accessibility */
+:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
+}
+
+/* Mobile-first responsive styles */
+
+/* Extra Small screens (phones) - default */
+@media (max-width: 384px) {
+  html {
+    font-size: 14px;
+  }
+  
+  #root {
+    padding: 0;
+  }
+}
+
+/* Small screens (landscape phones, small tablets) */
+@media (min-width: 385px) and (max-width: 768px) {
+  body {
+    padding-top: env(safe-area-inset-top, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
+  }
+}
+
+/* Medium screens (tablets) */
+@media (min-width: 769px) {
   #root {
     padding: 0 1rem;
+  }
+}
+
+/* Large screens (desktops) */
+@media (min-width: 1024px) {
+  #root {
+    padding: 0;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  button {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 12px 16px;
+  }
+  
+  input, textarea {
+    min-height: 48px;
+    padding: 12px;
+  }
+  
+  a {
+    min-height: 48px;
+    min-width: 48px;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  input, textarea {
+    color-scheme: dark;
+  }
+}
+
+/* Safe area for notched devices */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left, 0));
+    padding-right: max(0px, env(safe-area-inset-right, 0));
+    padding-top: max(0px, env(safe-area-inset-top, 0));
   }
 }

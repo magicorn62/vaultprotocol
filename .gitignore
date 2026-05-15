@@ -30,3 +30,4 @@ src/App.tsx(211,19): error TS6133: '_receipt' is declared but its value is never
 src/App.tsx(285,31): error TS6133: '_addResult' is declared but its value is never read.
 src/App.tsx(306,31): error TS6133: '_switchResult' is declared but its value is never read.
 Error: Command "npm run build" exited with 2
+contract.txt
